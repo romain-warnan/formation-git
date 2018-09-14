@@ -6,5 +6,5 @@
 2;Annie Gutierrez;agutierrez5@msu.edu;02/02/1954
 1;William Day;wday6@squarespace.com;15/05/1960
 2;Cheryl Woods;cwoods7@storify.com;08/04/1981
-1;Richard Cox;rcox8@dailymotion.com;25/04/1996
+1;Richard Cox;richard.cox@dailymotion.com;25/04/1996
 1;Bobby Morris;bmorris9@intel.com;30/03/1990
