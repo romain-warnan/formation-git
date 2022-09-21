@@ -12,12 +12,12 @@ import fr.insee.bar.repository.ClientRepository;
 @Component
 public class ClientConverter implements Converter<String, Client> {
 
-	@Autowired
-	private ClientRepository clientRepository;
+  @Autowired
+  private ClientRepository clientRepository;
 
-	@Override
-	public Client convert(String id) {
-		Optional<Client> client = clientRepository.findById(Short.valueOf(id));
-		return client.orElse(Client.EMPTY);
-	}
+  @Override
+  public Client convert(String id) {
+    Optional<Client> client = clientRepository.findById(Short.valueOf(id));
+    return client.orElse(Client.EMPTY);
+  }
 }

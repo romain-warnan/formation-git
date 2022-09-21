@@ -315,12 +315,14 @@ Tester :
 
 #### Avance rapide
 
-Dans une branche `salarie`, renommer toutes les variables "salarie" en "employe". Valider cette modification.
+Dans une branche `beans`, renommer toutes les variables "salarie" en "employe". Valider cette modification.
 
 ```bash
-git checkout -b salarie
-find src/main/java -type f -exec sed -i -e "s/salarie/employe/g" {} \;
-git commit -am "Renommage des variables 'salarie' -> 'employe'"
+git checkout -b beans
+find src -type f -exec sed -i -e "s/fr.insee.bar.model/fr.insee.bar.beans/g" {} \;
+git mv src/main/java/fr/insee/bar/model/ src/main/java/fr/insee/bar/beans
+git add .
+git commit -m "Renommer le package 'model' en 'beans'"
 ```
 
 Pour vérifier qu’il n’y a pas de régression, lancer les tests unitaires, puis lancer l’application [http://localhost:8080](http://localhost:8080) pour tester.
@@ -330,13 +332,13 @@ mvn test
 mvn spring-boot:run
 ```
 
-Fusionner la branche `salarie` dans `master`, consulter l’historique et supprimer la branche `salarie`.
+Fusionner la branche `beans` dans `master`, consulter l’historique et supprimer la branche `beans`.
 
 ```bash
 git checkout master
-git merge salarie
+git merge beans
 git lg
-git branch -d salarie
+git branch -d beans
 ```
 
 #### Fusion à trois sources
@@ -351,24 +353,15 @@ find src/main/java -type f -exec sed -i "s/\t/  /g" {} \;
 git commit -am "Remplacement des tabulations par des espaces"
 ```
 
-Remplacer également le type de redirection par `TEMPORARY_REDIRECT` dans la classe `AccueilController` et dans le test associé. Valider.
-
-```bash
-sed -i -e "s/MOVED_PERMANENTLY/TEMPORARY_REDIRECT/g" src/main/java/fr/insee/bar/controller/AccueilController.java
-sed -i -e "s/MOVED_PERMANENTLY/TEMPORARY_REDIRECT/g" src/test/java/fr/insee/bar/controller/AccueilControllerTest.java
-git commit -am "redirection temporaire"
-```
-
-Dans la branche `master` renommer le *package* `model` en `beans`.
+Dans la branche `master`, renommer toutes les variables "salarie" en "employe". Valider cette modification.
 
 :information_source: Cette action représente un *refactoring* assez important.
 
 ```bash
 git checkout master
-find src -type f -exec sed -i -e "s/fr.insee.bar.model/fr.insee.bar.beans/g" {} \;
-git mv src/main/java/fr/insee/bar/model/ src/main/java/fr/insee/bar/beans
+find src/main/java -type f -exec sed -i -e "s/salarie/employe/g" {} \;
+git commit -am "Renommage des variables 'salarie' -> 'employe'"
 git add .
-git commit -m "Renommer le package 'model' en 'beans'"
 ```
 
 Fusionner la branche `spaces` dans `master`. Constater la présence de nombreux conflits dus à la modification de chaque tabulation. Interrompre la fusion.

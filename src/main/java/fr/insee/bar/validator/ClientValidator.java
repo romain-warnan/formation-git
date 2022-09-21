@@ -11,20 +11,20 @@ import fr.insee.bar.service.ClientService;
 @Component
 public class ClientValidator implements Validator {
 
-	@Autowired
-	private ClientService clientService;
+  @Autowired
+  private ClientService clientService;
 
-	@Override
-	public boolean supports(Class<?> clazz) {
-		return Client.class.isAssignableFrom(clazz);
-	}
+  @Override
+  public boolean supports(Class<?> clazz) {
+    return Client.class.isAssignableFrom(clazz);
+  }
 
-	@Override
-	public void validate(Object target, Errors errors) {
-		Client client = (Client) target;
-		if (clientService.emailDejaUtilise(client)) {
-			errors.rejectValue("email", "client.email.unique");
-		}
-	}
+  @Override
+  public void validate(Object target, Errors errors) {
+    Client client = (Client) target;
+    if (clientService.emailDejaUtilise(client)) {
+      errors.rejectValue("email", "client.email.unique");
+    }
+  }
 
 }

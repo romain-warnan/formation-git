@@ -15,17 +15,17 @@ import fr.insee.bar.provider.EmployeProvider;
 @Component
 public class EmployeInterceptor extends HandlerInterceptorAdapter implements HandlerInterceptor {
 
-	@Autowired
-	private EmployeProvider employeProvider;
+  @Autowired
+  private EmployeProvider employeProvider;
 
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		HttpSession session = request.getSession(true);
-		Employe employe = (Employe) session.getAttribute("employe");
-		if (employe == null) {
-			employe = employeProvider.provide();
-			session.setAttribute("employe", employe);
-		}
-		return true;
-	}
+  @Override
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    HttpSession session = request.getSession(true);
+    Employe employe = (Employe) session.getAttribute("employe");
+    if (employe == null) {
+      employe = employeProvider.provide();
+      session.setAttribute("employe", employe);
+    }
+    return true;
+  }
 }

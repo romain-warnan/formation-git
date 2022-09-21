@@ -23,31 +23,31 @@ import fr.insee.bar.validator.ClientValidator;
 @RequestMapping("/client")
 public class ModificationClientController {
 
-	@Autowired
-	private ClientRepository clientRepository;
+  @Autowired
+  private ClientRepository clientRepository;
 
-	@Autowired
-	private ClientValidator clientValidator;
+  @Autowired
+  private ClientValidator clientValidator;
 
-	@Autowired
-	private EmployeService employeService;
+  @Autowired
+  private EmployeService employeService;
 
-	@GetMapping("/modification/{client}")
-	public String modificationClient(@PathVariable("client") Client client, Employe salarie, Model model) throws BarDroitException {
-		employeService.verifierResponsable(salarie);
-		model.addAttribute("client", client);
-		return "modification-client";
-	}
+  @GetMapping("/modification/{client}")
+  public String modificationClient(@PathVariable("client") Client client, Employe salarie, Model model) throws BarDroitException {
+    employeService.verifierResponsable(salarie);
+    model.addAttribute("client", client);
+    return "modification-client";
+  }
 
-	@PostMapping("/modification/{client}")
-	public String modificationClientPost(@Valid Client client, BindingResult result, RedirectAttributes attributes) {
-		clientValidator.validate(client, result);
-		if (result.hasErrors()) {
-			return "modification-client";
-		}
-		clientRepository.save(client);
-		attributes.addFlashAttribute("modification", true);
-		attributes.addAttribute("id", client.getId());
-		return "redirect:/client/{id}";
-	}
+  @PostMapping("/modification/{client}")
+  public String modificationClientPost(@Valid Client client, BindingResult result, RedirectAttributes attributes) {
+    clientValidator.validate(client, result);
+    if (result.hasErrors()) {
+      return "modification-client";
+    }
+    clientRepository.save(client);
+    attributes.addFlashAttribute("modification", true);
+    attributes.addAttribute("id", client.getId());
+    return "redirect:/client/{id}";
+  }
 }

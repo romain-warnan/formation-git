@@ -10,9 +10,9 @@ import fr.insee.bar.model.Client;
 @Controller
 public class ClientController {
 
-	@GetMapping("/client/{id}")
-	public String client(Model model, @PathVariable("id") Client client) {
-		model.addAttribute("client", client);
-		return "client";
-	}
+  @GetMapping("/client/{id}")
+  public String client(Model model, @PathVariable("id") Client client) {
+    model.addAttribute("client", client);
+    return "client";
+  }
 }

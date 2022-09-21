@@ -22,30 +22,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/image")
 public class ImageController {
 
-	private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
+  private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
 
-	@GetMapping
-	public String image() {
-		return "image";
-	}
+  @GetMapping
+  public String image() {
+    return "image";
+  }
 
-	@GetMapping("/{file:.+}")
-	public ResponseEntity<byte[]> imageFooter(@PathVariable("file") String file) {
-		Path path = Paths.get("Z:", "images", file);
-		return ResponseEntity
-			.ok()
-			.cacheControl(CacheControl.maxAge(30, TimeUnit.DAYS))
-			.contentType(MediaType.IMAGE_PNG)
-			.body(imageAsByteArray(path));
-	}
+  @GetMapping("/{file:.+}")
+  public ResponseEntity<byte[]> imageFooter(@PathVariable("file") String file) {
+    Path path = Paths.get("Z:", "images", file);
+    return ResponseEntity
+      .ok()
+      .cacheControl(CacheControl.maxAge(30, TimeUnit.DAYS))
+      .contentType(MediaType.IMAGE_PNG)
+      .body(imageAsByteArray(path));
+  }
 
-	private static byte[] imageAsByteArray(Path path) {
-		try (InputStream in = FileUtils.openInputStream(path.toFile())) {
-			return IOUtils.toByteArray(in);
-		}
-		catch (IOException e) {
-			logger.error(e.getMessage());
-		}
-		return null;
-	}
+  private static byte[] imageAsByteArray(Path path) {
+    try (InputStream in = FileUtils.openInputStream(path.toFile())) {
+      return IOUtils.toByteArray(in);
+    }
+    catch (IOException e) {
+      logger.error(e.getMessage());
+    }
+    return null;
+  }
 }

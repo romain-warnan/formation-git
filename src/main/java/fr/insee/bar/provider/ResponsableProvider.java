@@ -11,12 +11,12 @@ import fr.insee.bar.repository.EmployeRepository;
 @Component
 public class ResponsableProvider implements EmployeProvider {
 
-	@Autowired
-	private EmployeRepository employeRepository;
+  @Autowired
+  private EmployeRepository employeRepository;
 
-	@Override
-	public Employe provide() {
-		return employeRepository.findById(Short.valueOf("3")).get();
-	}
+  @Override
+  public Employe provide() {
+    return employeRepository.findById(Short.valueOf("3")).get();
+  }
 
 }

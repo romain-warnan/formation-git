@@ -9,6 +9,6 @@ import fr.insee.bar.model.Cocktail;
 
 public interface CocktailRepository extends JpaRepository<Cocktail, Short>, JpaSpecificationExecutor<Cocktail> {
 
-	@Query("select c from Cocktail c where c.id = :#{#cocktail.id}")
-	public Cocktail findByExample(@Param("cocktail") Cocktail cocktail);
+  @Query("select c from Cocktail c where c.id = :#{#cocktail.id}")
+  public Cocktail findByExample(@Param("cocktail") Cocktail cocktail);
 }

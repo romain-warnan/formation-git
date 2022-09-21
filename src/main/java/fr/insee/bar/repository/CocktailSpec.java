@@ -7,8 +7,8 @@ import fr.insee.bar.search.Search;
 
 public abstract class CocktailSpec {
 
-	public static Specification<Cocktail> search(String search) {
-		String q = "%" + Search.normalize(search) + "%";
-		return (cocktail, query, builder) -> builder.like(cocktail.get("nomNorm"), q);
-	}
+  public static Specification<Cocktail> search(String search) {
+    String q = "%" + Search.normalize(search) + "%";
+    return (cocktail, query, builder) -> builder.like(cocktail.get("nomNorm"), q);
+  }
 }

@@ -20,7 +20,7 @@ public class ClientsPdfView extends AbstractPdfView{
     protected void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer, HttpServletRequest request, HttpServletResponse response) throws Exception {
         @SuppressWarnings("unchecked") List<Client> clients = (List<Client>) model.get("clients");
         for (Client client : clients) {
-			document.add(new Paragraph(String.format("%s — %s", client.getNom(), client.getEmail())));
+      document.add(new Paragraph(String.format("%s — %s", client.getNom(), client.getEmail())));
         }
     }
 }

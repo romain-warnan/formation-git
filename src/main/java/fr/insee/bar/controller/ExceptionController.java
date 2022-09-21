@@ -15,52 +15,52 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @ControllerAdvice
 public class ExceptionController {
 
-	@ExceptionHandler(BarDroitException.class)
-	@ResponseStatus(HttpStatus.FORBIDDEN)
-	public String handleDroitException(BarDroitException e, Model model) {
-		return httpException(e, model);
-	}
+  @ExceptionHandler(BarDroitException.class)
+  @ResponseStatus(HttpStatus.FORBIDDEN)
+  public String handleDroitException(BarDroitException e, Model model) {
+    return httpException(e, model);
+  }
 
-	@ExceptionHandler(BarCommandeException.class)
-	public ResponseEntity<String> handleCommandeException(BarCommandeException e) {
-		return ResponseEntity
+  @ExceptionHandler(BarCommandeException.class)
+  public ResponseEntity<String> handleCommandeException(BarCommandeException e) {
+    return ResponseEntity
             .badRequest()
             .body(e.getMessage());
-	}
+  }
 
-	@ExceptionHandler(BarHttpException.class)
-	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	public String handleHttpException(BarHttpException e, Model model) {
-		return httpException(e, model);
-	}
+  @ExceptionHandler(BarHttpException.class)
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  public String handleHttpException(BarHttpException e, Model model) {
+    return httpException(e, model);
+  }
 
-	@ExceptionHandler(BarAjaxException.class)
-	public ResponseEntity<String> handleAjaxException(BarAjaxException e) {
-		return ResponseEntity
+  @ExceptionHandler(BarAjaxException.class)
+  public ResponseEntity<String> handleAjaxException(BarAjaxException e) {
+    return ResponseEntity
             .status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(e.getMessage());
-	}
+  }
 
-	@ExceptionHandler(NoHandlerFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public String handleResourceNotFoundException(Model model) {
-		return httpException("La page que vous cherchez n’existe pas.", model);
-	}
+  @ExceptionHandler(NoHandlerFoundException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  public String handleResourceNotFoundException(Model model) {
+    return httpException("La page que vous cherchez n’existe pas.", model);
+  }
 
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<String> handleUnexpectedException(Exception e) {
+  @ExceptionHandler(Exception.class)
+  public ResponseEntity<String> handleUnexpectedException(Exception e) {
         return ResponseEntity
             .status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(e.getMessage());
-	}
+  }
 
-	private static String httpException(String message, Model model) {
-		model.addAttribute("message", message);
-		return "exception";
-	}
+  private static String httpException(String message, Model model) {
+    model.addAttribute("message", message);
+    return "exception";
+  }
 
-	private static String httpException(Exception e, Model model) {
-		model.addAttribute("message", e.getMessage());
-		return "exception";
-	}
+  private static String httpException(Exception e, Model model) {
+    model.addAttribute("message", e.getMessage());
+    return "exception";
+  }
 }

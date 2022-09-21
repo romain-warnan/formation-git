@@ -17,48 +17,48 @@ import com.google.common.base.Objects;
 @DynamicInsert
 public class Role {
 
-	@Id
-	@Column(name = "id")
-	private Short id;
+  @Id
+  @Column(name = "id")
+  private Short id;
 
-	@Column(name = "libelle")
-	private String libelle;
+  @Column(name = "libelle")
+  private String libelle;
 
-	public Short getId() {
-		return id;
-	}
+  public Short getId() {
+    return id;
+  }
 
-	public void setId(Short id) {
-		this.id = id;
-	}
+  public void setId(Short id) {
+    this.id = id;
+  }
 
-	public String getLibelle() {
-		return libelle;
-	}
+  public String getLibelle() {
+    return libelle;
+  }
 
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
+  public void setLibelle(String libelle) {
+    this.libelle = libelle;
+  }
 
-	@Override
-	public int hashCode() {
-		return Objects.hashCode(this.id);
-	}
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(this.id);
+  }
 
-	@Override
-	public boolean equals(Object object) {
-		if (object == null || !(object instanceof Role)) {
-			return false;
-		}
-		Role other = (Role) object;
-		return Objects.equal(this.id, other.id);
-	}
+  @Override
+  public boolean equals(Object object) {
+    if (object == null || !(object instanceof Role)) {
+      return false;
+    }
+    Role other = (Role) object;
+    return Objects.equal(this.id, other.id);
+  }
 
-	@Override
-	public String toString() {
-		return MoreObjects.toStringHelper(this)
-			.add("id", id)
-			.add("libelle", libelle)
-			.toString();
-	}
+  @Override
+  public String toString() {
+    return MoreObjects.toStringHelper(this)
+      .add("id", id)
+      .add("libelle", libelle)
+      .toString();
+  }
 }

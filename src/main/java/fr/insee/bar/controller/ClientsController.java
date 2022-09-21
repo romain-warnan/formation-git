@@ -13,13 +13,13 @@ import fr.insee.bar.repository.ClientRepository;
 @Controller
 public class ClientsController {
 
-	@Autowired
-	private ClientRepository clientRepository;
+  @Autowired
+  private ClientRepository clientRepository;
 
-	@GetMapping("/clients")
-	public String clients(Model model) {
-		List<Client> clients = clientRepository.findAll();
-		model.addAttribute("clients", clients);
-		return "clients";
-	}
+  @GetMapping("/clients")
+  public String clients(Model model) {
+    List<Client> clients = clientRepository.findAll();
+    model.addAttribute("clients", clients);
+    return "clients";
+  }
 }

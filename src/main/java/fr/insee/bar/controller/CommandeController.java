@@ -11,9 +11,9 @@ import fr.insee.bar.model.Employe;
 @RequestMapping("/commande")
 public class CommandeController {
 
-	@GetMapping
-	public String commande(Employe salarie, Model model) {
-		model.addAttribute("employe", salarie);
-		return "commande";
-	}
+  @GetMapping
+  public String commande(Employe salarie, Model model) {
+    model.addAttribute("employe", salarie);
+    return "commande";
+  }
 }

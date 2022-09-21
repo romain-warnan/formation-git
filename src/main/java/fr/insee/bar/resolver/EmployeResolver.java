@@ -15,16 +15,16 @@ import fr.insee.bar.model.Employe;
 @Component
 public class EmployeResolver implements HandlerMethodArgumentResolver {
 
-	@Override
-	public boolean supportsParameter(MethodParameter parameter) {
-		return Employe.class.equals(parameter.getParameterType());
-	}
+  @Override
+  public boolean supportsParameter(MethodParameter parameter) {
+    return Employe.class.equals(parameter.getParameterType());
+  }
 
-	@Override
-	public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-		HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
-		HttpSession session = request.getSession(true);
-		return session.getAttribute("employe");
-	}
+  @Override
+  public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+    HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
+    HttpSession session = request.getSession(true);
+    return session.getAttribute("employe");
+  }
 
 }
